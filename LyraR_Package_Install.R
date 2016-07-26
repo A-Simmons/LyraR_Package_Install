@@ -1,3 +1,26 @@
+# Copyright (c) <2016> <Alex Simmons>
+  
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+# and associated documentation files (the "Software"), to deal in the Software without restriction, 
+# including without limitation the rights to use, copy, modify, merge, publish, distribute, 
+# sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is 
+# furnished to do so, subject to the following conditions:
+  
+#The above copyright notice and this permission notice shall be included in all copies or 
+# substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING 
+# BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+# Version: 0.1b
+# Repository: https://github.com/A-Simmons/LyraR_Package_Install
+# Submit any and all issues or sugesstions to: https://github.com/A-Simmons/LyraR_Package_Install/issues
+# Any packages not included in the exception list 
+
+#
 getDependencies <- function(packages.toinstall,dest="C:/R_Library_Source_Files/") {
   
   # Make list of dependencies
@@ -83,16 +106,14 @@ dependenciesMissing <- function(package,pack.df) {
 }
 
 exceptionList <- function(package,dest) {
-  packages<-c("stringi")
-  URL<-c("https://github.com/gagolews/stringi/archive/master.zip")
-  fileName<-c("stringi-master.zip")
-  unzip<-c(TRUE)
-  exception.df <- data.frame(packages,URL,fileName,unzip)
+  # Load Exception List
+  exception.df <- read.csv("https://raw.githubusercontent.com/A-Simmons/LyraR_Package_Install/master/LyraR_Package_Exception_List.csv",header=TRUE,stringsAsFactors=FALSE)
   
   if (package %in% exception.df$packages) {
-    package.details <- exception.df[packages==package,]
-    download.file(as.character(package.details$URL),dest=paste(dest,package.details$fileName,sep=""))
+    package.details <- exception.df[exception.df$packages==package,]
+    fileName<-package.details$fileName
     
+    download.file(as.character(package.details$URL),dest=paste(dest,fileName,sep=""))
     # If file needs unzipping
     if (package.details$unzip == TRUE) {
       
