@@ -76,7 +76,7 @@ List of downloaded packages:
 
 Install string. CD to the location you store the source files and add the lcoation of your personal library.
 
-[1] "R CMD INSTALL --configure-args='--disable-pkg-config' --library=<your_personal_library_location>  stringi-master assertthat_0.1.tar.gz R6_2.1.2.tar.gz Rcpp_0.12.6.tar.gz tibble_1.1.tar.gz magrittr_1.5.tar.gz lazyeval_0.2.0.tar.gz DBI_0.4-1.tar.gz stringr_1.0.0.tar.gz dplyr_0.5.0.tar.gz ssh.utils_1.0.tar.gz"
+[1] "R CMD INSTALL --library=<your_personal_library_location>  stringi-master assertthat_0.1.tar.gz R6_2.1.2.tar.gz Rcpp_0.12.6.tar.gz tibble_1.1.tar.gz magrittr_1.5.tar.gz lazyeval_0.2.0.tar.gz DBI_0.4-1.tar.gz stringr_1.0.0.tar.gz dplyr_0.5.0.tar.gz ssh.utils_1.0.tar.gz"
 ```
 
 # Usage:
