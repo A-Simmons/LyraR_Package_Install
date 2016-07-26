@@ -79,6 +79,17 @@ Install string. CD to the location you store the source files and add the lcoati
 [1] "R CMD INSTALL --configure-args='--disable-pkg-config' --library=<your_personal_library_location>  stringi-master assertthat_0.1.tar.gz R6_2.1.2.tar.gz Rcpp_0.12.6.tar.gz tibble_1.1.tar.gz magrittr_1.5.tar.gz lazyeval_0.2.0.tar.gz DBI_0.4-1.tar.gz stringr_1.0.0.tar.gz dplyr_0.5.0.tar.gz ssh.utils_1.0.tar.gz"
 ```
 
+# Usage:
+1. Create a local folder to store all the package source files 
+2. Run `getDependencies()` giving a vector of package names and the path to the local folder created.
+3. Create a directory on the HPC file server for your R library
+4. Create a directory on the HPC file server to store the package source files
+  * Copy the source files in your local folder to this new folder on the HPC file server
+5. Run the install script outputted at the end of script e.g., `R CMD INSTALL --library=...`
+  * Change `<your_personal_library_location>` to be the path to the directory of the R library you created in step 3
+
+
+# Issues:
 This script is not by means perfect. If there exist system requirements for the package this script can not automatically determine and attempt to meet these requirements. An example of this is the `stringi` package where the version from CRAN requires ICU4C. To remedy this, an exception list exists to fix these cases if possible and when known about.
 
 If you know about a package that has other system requirements please lodge an issue [here](https://github.com/A-Simmons/LyraR_Package_Install/issues)
