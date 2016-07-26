@@ -6,7 +6,7 @@ Inputs:
 + packages.toinstall: A vector of the package names you wish to install.
 + dest: Path to location to store all the downloaded source files locally (Default="C:/R_Library_Source_Files/"). 
 
-As an example, consider the need for the packages `dplyr` and `ssh.utils`. `dplyr` requires `assertthat`, `R6`, `Rcpp`, `tibble`, `magrittr`, `lazyeval`, and `DBI`. Quite a few packages but no particular issues. On the other hand, `ssh.utils` requires `stringr` which itself requires `stringi` and `magrittr`.
+As an example, consider the need for the packages `dplyr` and `ssh.utils`. `dplyr` requires `assertthat`, `R6`, `Rcpp`, `tibble`, `magrittr`, `lazyeval`, and `DBI`. Quite a few packages but no particular issues. On the other hand, `ssh.utils` requires `stringr` which itself requires `stringi` and `magrittr`. If you needed to install even just 5 packages manually, you might be required to keep track of over 20 dependencies which will need a specific installation order.
 
 This script automates this recursive search and even specifies a specific package install order to compensate for these dependency trees. 
 
