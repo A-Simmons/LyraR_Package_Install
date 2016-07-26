@@ -21,6 +21,8 @@
 # Any packages not included in the exception list 
 
 #
+
+
 getDependencies <- function(packages.toinstall,dest="C:/R_Library_Source_Files/") {
   
   # Make list of dependenciesUsing the
@@ -37,6 +39,12 @@ getDependencies <- function(packages.toinstall,dest="C:/R_Library_Source_Files/"
   
   cat(sprintf("\nList of downloaded packages:\n"))
   print(pack.df)
+  
+  # Make module load string
+  module.load.string <- getModulesToLoad(pack.df$package)
+  
+  cat(sprintf("\nLoad the required modules with this line.\n\n"))
+  print(module.load.string)
   
   # Make Install Script String
   install.string <- "R CMD INSTALL --library=<your_personal_library_location> "
@@ -128,4 +136,13 @@ exceptionList <- function(package,dest) {
   } else {
     return(FALSE)
   }
+}
+
+getModulesToLoad <- function(packages) {
+  exception.df <- read.csv("https://raw.githubusercontent.com/A-Simmons/LyraR_Package_Install/master/LyraR_Package_Exception_List.csv",header=TRUE,stringsAsFactors=FALSE)
+  string <- "module load R/3.2.4_gcc"
+  for (package in packages) {
+    string<-paste(string,exception.df[exception.df$packages %in% package,"module"])
+  }
+  return(string)
 }
