@@ -43,7 +43,7 @@ getDependencies <- function(packages.toinstall,dest="C:/R_Library_Source_Files/"
   # Make module load string
   module.load.string <- getModulesToLoad(pack.df$package)
   
-  cat(sprintf("\nLoad the required modules with this line.\n\n"))
+  cat(sprintf("\nLoad the required modules with this line. Note, this line will be needed in your .pbs or .sub file to ensure all modules are loaded for code execution, not just installation!\n\n"))
   print(module.load.string)
   
   # Make Install Script String
@@ -144,5 +144,5 @@ getModulesToLoad <- function(packages) {
   for (package in packages) {
     string<-paste(string,exception.df[exception.df$packages %in% package,"module"])
   }
-  return(string)
+  return(gsub(" +"," ",string))
 }
