@@ -23,7 +23,7 @@
 #
 getDependencies <- function(packages.toinstall,dest="C:/R_Library_Source_Files/") {
   
-  # Make list of dependencies
+  # Make list of dependenciesUsing the
   pack.df <- data.frame(package=packages.toinstall,rank=0)
   for (package in packages.toinstall) {
     pack.df <- addPackagesToInstallList(package,pack.df,1)
@@ -39,12 +39,12 @@ getDependencies <- function(packages.toinstall,dest="C:/R_Library_Source_Files/"
   print(pack.df)
   
   # Make Install Script String
-  install.string <- "R CMD INSTALL --configure-args='--disable-pkg-config' --library=<your_personal_library_location> "
+  install.string <- "R CMD INSTALL --library=<your_personal_library_location> "
   for (file in pack.df$fileName) {
     install.string <- paste(install.string,file)
   }
   
-  cat(sprintf("\nInstall string. CD to the location you store the source files and add the lcoation of your personal library.\n\n"))
+  cat(sprintf("\nInstall string. CD to the location you store the source files and add the location of your personal library.\n\n"))
   print(install.string)
 }
 
@@ -128,5 +128,4 @@ exceptionList <- function(package,dest) {
   } else {
     return(FALSE)
   }
-  
 }
