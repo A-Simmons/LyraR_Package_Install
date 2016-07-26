@@ -1,4 +1,4 @@
 packages,URL,fileName,unzip,module
-stringi,https://github.com/gagolews/stringi/archive/master.zip,stringi-master.zip,TRUE,FALSE
+stringi,https://github.com/gagolews/stringi/archive/master.zip,stringi-master.zip,TRUE,
 rgdal,https://cran.r-project.org/src/contrib/rgdal_1.1-10.tar.gz,rgdal_1.1-10.tar.gz,FALSE,gdal/1.8.1
 rjags,https://cran.r-project.org/src/contrib/rjags_4-6.tar.gz,rjags_4-6.tar.gz,FALSE,jags/4.2.0 
