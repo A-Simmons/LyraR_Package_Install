@@ -23,13 +23,39 @@
 #
 
 
-getDependencies <- function(packages.toinstall,dest="C:/R_Library_Source_Files/") {
+getDependencies <- function(packages.toinstall,dest) {
   
-  # Make list of dependenciesUsing the
+  # Some variables
+  dest.missing = FALSE
+  
+  # Set defaults for dest and check consistency
+  if (missing(dest)) {
+    dest.missing = TRUE
+    if (.Platform$OS.type == "windows") {
+      dest = "C:/R_Library_Source_Files/"
+    } else {
+      dest = "~/R_Library_Source_Files/"
+    }
+  } else {
+    # Ensure that the last character is /
+    if (grep("[^/]{1}$",dest)) {
+      dest<-paste(dest,"/",sep="")
+    }
+  }
+  
+  # Check if folder exists, create if not (The end / gives a FALSE so it is removed)
+  if (!file.exists(gsub(".{1}$","",dest))) {
+    dir.create(dest)
+  }
+  
+  
+  # Make list of dependencies
   pack.df <- data.frame(package=packages.toinstall,rank=0)
   for (package in packages.toinstall) {
     pack.df <- addPackagesToInstallList(package,pack.df,1)
   }
+  # Remove any already on Lyra
+  
   
   # Order descending by rank
   pack.df<-pack.df[with(pack.df, order(-rank)),]
@@ -145,4 +171,9 @@ getModulesToLoad <- function(packages) {
     string<-paste(string,exception.df[exception.df$packages %in% package,"module"])
   }
   return(gsub(" +"," ",string))
+}
+
+removeInstalledPackaghes <- function(pack.df) {
+  
+  
 }
