@@ -85,7 +85,8 @@ Install string. CD to the location you store the source files and add the lcoati
 3. Create a directory on the HPC file server for your R library
 4. Create a directory on the HPC file server to store the package source files
   * Copy the source files in your local folder to this new folder on the HPC file server
-5. Run the install script outputted at the end of script e.g., `R CMD INSTALL --library=...`
+5. Run `module load R/3.2.4_gcc`
+6. Run the install script outputted at the end of script e.g., `R CMD INSTALL --library=...`
   * Change `<your_personal_library_location>` to be the path to the directory of the R library you created in step 3
 
 
